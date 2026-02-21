@@ -34,9 +34,7 @@ export class PizzaService {
   }
 
   createSliced(base: PizzaBase, size: PizzaSize): SlicedPizza {
-    const pizza = new SlicedPizza(base, size);
-    this.pizzas.push(pizza);
-    return pizza;
+    return new SlicedPizza(base, size);
   }
 
   getAll(): AbstractPizza[] {
