@@ -24,6 +24,20 @@ export class SlicedPizza extends AbstractPizza {
     }
   }
 
+  showSlices() {
+    return Array.from(this.slices.entries())
+      .map(([sliceNumber, ingredients]) => {
+        if (ingredients.length === 0) {
+          return `кусок ${sliceNumber}: пусто`;
+        }
+        const ingredientInfo = ingredients
+          .map((ing) => `${ing.name} (${ing.price})`)
+          .join(", ");
+        return `кусок ${sliceNumber}: ${ingredientInfo}`;
+      })
+      .join("\n");
+  }
+
   price(): number {
     let sum = this.base.price;
 

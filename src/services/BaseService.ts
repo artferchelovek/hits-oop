@@ -5,14 +5,16 @@ export class BaseService {
 
   create(name: string, price: number) {
     if (name !== "Классическая") {
-      const classic = this.bases.find((base) => base.name === name);
+      const classic = this.bases.find((base) => "Классическая" === base.name);
 
       if (!classic) {
-        throw new Error("Сначала нужно создать классическую");
+        throw new Error("Сначала нужно создать классическую основу");
       }
 
       if (price > classic.price * 1.2) {
-        throw new Error(`Снизьте цену на на ${classic.price * 1.2 - price}`);
+        throw new Error(
+          `Снизьте цену на на ${Math.abs(classic.price * 1.2 - price)}`,
+        );
       }
     }
 
@@ -33,7 +35,7 @@ export class BaseService {
   }
 
   delete(baseId: string) {
-    this.bases = this.bases.filter((b) => b.id === baseId);
+    this.bases = this.bases.filter((b) => b.id !== baseId);
   }
 
   getAll() {
