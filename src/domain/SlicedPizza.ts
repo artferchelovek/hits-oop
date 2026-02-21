@@ -8,6 +8,10 @@ export class SlicedPizza extends AbstractPizza {
 
   constructor(base: PizzaBase, size: PizzaSize) {
     super(base, size);
+
+    for (let i = 1; i <= size; i++) {
+      this.slices.set(i, []);
+    }
   }
 
   addIngredientToSlice(slice: number, ingredient: Ingredient) {
