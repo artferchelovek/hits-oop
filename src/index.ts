@@ -7,6 +7,7 @@ import { ingredientMenu } from "./menu/ingredientMenu";
 import { baseMenu } from "./menu/baseMenu";
 import { pizzaMenu } from "./menu/pizzaMenu";
 import orderMenu from "./menu/orderMenu/orderMenu";
+import { filterMenu } from "./menu/filterMenu/filterMenu";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -32,6 +33,7 @@ async function mainMenu(): Promise<void> {
     console.log("2. Основы");
     console.log("3. Пиццы");
     console.log("4. Заказы");
+    console.log("5. Фильтрация");
     console.log("0. Выход");
 
     const choice = await ask("Выберите пункт: ");
@@ -55,6 +57,9 @@ async function mainMenu(): Promise<void> {
           baseService,
           ingredientService,
         );
+        break;
+      case "5":
+        await filterMenu(ask, pizzaService, orderService);
         break;
       case "0":
         rl.close();
