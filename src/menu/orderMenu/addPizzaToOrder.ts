@@ -5,6 +5,7 @@ import { CombinedPizza } from "../../domain/CombinedPizza";
 import { createSlicedPizza } from "./createSlicedPizza";
 import { BaseService } from "../../services/BaseService";
 import { IngredientService } from "../../services/IngredientService";
+import { Ingredient } from "../../domain/Ingredient";
 
 export async function addPizzaToOrder(
   ask: (question: string) => Promise<string>,
@@ -54,6 +55,24 @@ export async function addPizzaToOrder(
       const pizza = pizzas[pizzaIndex];
 
       if (!pizza) return;
+
+      console.log("\nИнгредиенты:");
+
+      if (pizza instanceof RegularPizza) {
+        pizza.ingredients.forEach((ingredient: Ingredient) => {
+          console.log(`     - ${ingredient.name} | ${ingredient.price}`);
+        });
+
+        const doubleIngredient = await ask("\nУдвоить? (y/n) ");
+
+        switch (doubleIngredient) {
+          case "y":
+            pizza.ingredients.concat(pizza.ingredients);
+            break;
+          default:
+            break;
+        }
+      }
 
       order.addPizza(pizza);
       break;

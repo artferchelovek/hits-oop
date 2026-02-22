@@ -14,8 +14,8 @@ export function showOrders(orderService: OrderService) {
   orders.forEach((o) => {
     console.log("\n------------------");
     console.log("ID:", o.id);
-    console.log("Создан:", o.createdAt);
-    console.log("Отложен:", o.scheduledAt ?? "Нет");
+    console.log("Создан:", o.createdAt.toLocaleString());
+    console.log("Отложен:", o.scheduledAt?.toLocaleString() ?? "Нет");
     console.log("Комментарий:", o.comment ?? "Нет");
     console.log("Пицц:", o.pizzas.length);
     o.pizzas.forEach((p) => {
