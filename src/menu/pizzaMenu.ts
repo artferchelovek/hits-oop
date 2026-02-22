@@ -78,7 +78,9 @@ export async function pizzaMenu(
     }
 
     pizzas.forEach((p, index) =>
-      console.log(`${index + 1}. ${p.id} | ${p.price()}`),
+      console.log(
+        `${index + 1}. ${p.id} | ${p instanceof RegularPizza && p.name} | ${p.price()}`,
+      ),
     );
 
     const leftIndex = Number(await ask("Левая половина: ")) - 1;
